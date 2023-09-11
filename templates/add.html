@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block body %}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="banner">
+            <div class="banner-text">
+                <h2>TODO</h2>
+            </div>
+        </div>
+        
+        <div class="col-6">
+            <form action="" method="post" class="mt-4 shadow p-3 mb-5 bg-body-tertiary rounded">
+                {% csrf_token %}
+            
+                
+                <div class="mb-3">
+                    <label for="name" class="form-label">Task name :</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter the task" name="name">
+                </div>
+                <div class="mb-3">
+                    <label for="priority" class="form-label">Priority :</label>
+                    <input type="text" class="form-control" id="priority" placeholder="Enter the priority" name="priority">
+                </div>
+                <div class="mb-3">
+                    <label for="date" class="form-label">Date :</label>
+                    <input type="date" class="form-control" id="date" placeholder="Enter the date" name="date">
+                </div>
+                <div>
+                    <!-- <button type="button" class="btn btn-success btn-sm">submit</button> -->
+                    <input type="submit" class="btn btn-success">
+                </div>
+            </form>
+
+        </div>
+        <div class="col-6">
+            {% for i in task1 %}
+        <div class="card mt-4 shadow p-3 mb-5 bg-body-tertiary rounded form-control" style="width:70%; font-weight: bold;">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{i.name}}</li>
+                <li class="list-group-item">{{i.priority}}</li>
+                <li class="list-group-item">{{i.date}}</li>
+                <a href="{% url 'deleted' i.id %}">
+                    <button class="btn btn-danger btn-sm mt-2">Delete</button>
+                </a>
+                <a href="{% url 'remove' i.id %}">
+                    <button class="btn btn-success btn-sm mt-1">Update</button>
+                </a>
+
+            </ul>
+        </div>
+        {% endfor %}
+
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}
+
